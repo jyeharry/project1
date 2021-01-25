@@ -6,7 +6,7 @@ class BarsController < ApplicationController
   def search
     # step 1 search api
     coords = Geocoder.search(params[:location]).first.coordinates
-    client = GooglePlaces::Client.new('AIzaSyCq1JGs1n_gtMhSnUe42Sd_mGD1G3SJ82s')
+    client = GooglePlaces::Client.new('')
     spots = client.spots(coords[0], coords[1], :types => ['bar', 'night_club'], :detail => true);
     # step 2 loop through results
     spots.each do |spot|
