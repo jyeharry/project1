@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  get 'bars/index'
-  get 'bars/new'
-  get 'sessions/new'
   root :to => 'pages#home'
   resources :users, :only => [:new, :create, :index]
 
-  resources :mixtapes, :only => [:new, :create]
+  resources :bars, :only => [:new, :create, :index]
 
-  get '/login' => 'session#new'
-  post '/login' => 'session#create'
-  delete '/login' => 'session#destroy'
+  post '/bars/search' => 'bars#search'
+
+  # get '/login' => 'session#new'
+  # post '/login' => 'session#create'
+  # delete '/login' => 'session#destroy'
 end
