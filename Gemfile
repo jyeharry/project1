@@ -52,3 +52,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'google_places'
 gem 'geocoder'
+gem 'bootstrap'
+gem 'jquery-rails'
