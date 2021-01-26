@@ -4,13 +4,10 @@ class BarsController < ApplicationController
   end
 
   def search
-    # step 1 search api
     coords = Geocoder.search(params[:location]).first.coordinates
     client = GooglePlaces::Client.new('')
     spots = client.spots(coords[0], coords[1], :types => ['bar', 'night_club'], :detail => true);
-    # step 2 loop through results
     spots.each do |spot|
-      # insert each result into database
       bar = Bar.new
       bar.name = spot.name
       bar.address = spot.formatted_address
@@ -26,8 +23,11 @@ class BarsController < ApplicationController
       bar.bar_id = spot.place_id
       bar.save
     end
-    # step 3 redirect to index
     redirect_to bars_path
+  end
+
+  def saved
+
   end
 
   private

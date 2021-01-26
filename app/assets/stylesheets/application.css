@@ -13,3 +13,47 @@
  *= require_tree .
  *= require_self
  */
+
+ @import url('https://fonts.googleapis.com/css2?family=Damion&display=swap');
+
+body {
+  background-color: #f7f7f7;
+}
+
+.custom-bg-dark {
+  background-color: #120078;
+}
+
+.custom-bg-pink {
+  background-color: #D874F2;
+}
+
+.custom-text-pink {
+  color:
+}
+
+#custom-navbar-brand {
+  color: #D874F2;
+  font-family: 'Damion', cursive;
+  font-size: 1.75em;
+}
+
+#custom-btn {
+  color: #D874F2;
+  border-color: #D874F2;
+}
+
+#custom-btn:hover {
+  color: #fff;
+  background-color: #D874F2;
+}
+
+.custom-btn {
+  color: #D874F2;
+  border-color: #D874F2;
+}
+
+.custom-btn:hover {
+  color: #fff;
+  background-color: #D874F2;
+}
