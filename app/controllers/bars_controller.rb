@@ -12,13 +12,11 @@ class BarsController < ApplicationController
       bar.name = spot.name
       bar.address = spot.formatted_address
       bar.phone = spot.formatted_phone_number
-      photo = ''
       unless spot.photos.empty?
-        photo = spot.photos[0].fetch_url(400)
+        bar.image = spot.photos[0].fetch_url(400)
       else
-        photo = "/assets/stock-photo.jpg"
+        bar.image = "/assets/stock-photo.jpg"
       end
-      bar.image = photo
       bar.link = spot.website
       bar.bar_id = spot.place_id
       bar.save
@@ -27,7 +25,7 @@ class BarsController < ApplicationController
   end
 
   def saved
-
+    @bars = @current_user.bars
   end
 
   private

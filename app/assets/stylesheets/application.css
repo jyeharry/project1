@@ -57,3 +57,7 @@ body {
   color: #fff;
   background-color: #D874F2;
 }
+
+.card-width {
+  width: 400px;
+}
