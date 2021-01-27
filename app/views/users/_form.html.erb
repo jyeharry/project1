@@ -1,5 +1,3 @@
-<h1>Sign up</h1>
-
 <%= form_for @user do |f| %>
   <div class="row">
     <div class="col-sm-6 form-group">
@@ -27,5 +25,4 @@
   </div>
 
   <%= f.submit "Sign up", :id => 'custom-btn', :class => "btn" %>
-  <%= link_to "Cancel", root_path, :id => 'custom-btn', :class => "btn" %>
 <% end %>

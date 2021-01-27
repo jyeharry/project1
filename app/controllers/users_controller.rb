@@ -11,6 +11,16 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
+  def edit
+    @user = User.find params[:id]
+  end
+
+  def update
+    user = User.find params[:id]
+    user.update user_params
+    redirect_to root_path
+  end
+
   def create
     @user = User.new user_params
     if @user.save
@@ -29,7 +39,7 @@ class UsersController < ApplicationController
 
   def unsave
     @current_user.bars.delete Bar.find(params[:bar_id])
-    redirect_to bars_saved_path
+    redirect_back :fallback_location => 'post'
   end
 
   private

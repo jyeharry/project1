@@ -7,7 +7,7 @@
         <h5 class="mb-1"><%= "#{user.first_name} #{user.last_name}" %></h5>
         <small><%= "admin" if user.admin? %></small>
       </div>
-      <p class="mb-1"><%= user.email %></p>
+      <p class="mb-1"><%= user.email if @current_user.admin? %></p>
     </a>
   <% end %>
 </div>

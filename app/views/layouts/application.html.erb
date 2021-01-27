@@ -24,16 +24,13 @@
             <li class="nav-item">
               <%= link_to 'Explore Bars', bars_path, :id => 'explore-link', :class => 'nav-link' %>
             </li>
-
             <% if @current_user.present? %>
               <li class="nav-item">
-                <%= link_to 'Saved bars', bars_saved_path, :id => 'saved-bars-link', :class => 'nav-link' %>
+                <%= link_to 'Saved bars', user_path(@current_user.id), :id => 'saved-bars-link', :class => 'nav-link' %>
               </li>
-              <% if @current_user.admin? %>
-                <li class="nav-item">
-                  <%= link_to 'All users', users_path, :class => 'nav-link' %>
-                </li>
-              <% end %>
+              <li class="nav-item">
+                <%= link_to 'All users', users_path, :class => 'nav-link' %>
+              </li>
               <li class="nav-item">
                 <%= link_to 'Log out', login_path, :class => 'nav-link', :method => 'delete' %>
               </li>

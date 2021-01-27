@@ -1,4 +1,4 @@
-<h1>Sign up</h1>
+<h1>Edit User</h1>
 
 <%= form_for @user do |f| %>
   <div class="row">
@@ -26,6 +26,6 @@
     <%= f.password_field :password_confirmation, :class => 'form-control' %>
   </div>
 
-  <%= f.submit "Sign up", :id => 'custom-btn', :class => "btn" %>
+  <%= f.submit "Save changes", :id => 'custom-btn', :class => "btn" %>
   <%= link_to "Cancel", root_path, :id => 'custom-btn', :class => "btn" %>
 <% end %>

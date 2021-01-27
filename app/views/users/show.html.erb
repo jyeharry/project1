@@ -1,0 +1,30 @@
+<h1><%= "#{@user.first_name}'s bars" %></h1>
+
+<%= link_to 'Edit profile', edit_user_path %>
+
+<% @user.bars.each_with_index do |bar, i| %>
+  <% if i % 3 == 0 %>
+    <div class="row row-cols-1 row-cols-lg-3">
+  <% end %>
+  <div class="col mb-4">
+    <div class="card h-100">
+      <%= image_tag bar.image, :class => 'card-img-top' %>
+      <div class="card-body">
+        <h5 class="card-title"><%= bar.name %></h5>
+        <%= link_to bar.link, bar.link, :class => 'card-link' if bar.link.present? %>
+        <p class="card-text my-2"><%= bar.address %></p>
+        <p class="card-text mb-2"><%= bar.phone %></p>
+
+      </div>
+      <div class="card-footer">
+        <%= form_tag users_unsave_path do %>
+          <%= hidden_field_tag :bar_id, bar.id %>
+          <%= submit_tag "Unsave", :id => 'custom-btn', :class => 'btn btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% if i % 3 == 2 %>
+    </div>
+  <% end %>
+<% end %>

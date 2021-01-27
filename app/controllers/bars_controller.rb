@@ -25,10 +25,6 @@ class BarsController < ApplicationController
     redirect_to bars_path
   end
 
-  def saved
-    @bars = @current_user.bars.order :updated_at
-  end
-
   private
   def bar_params
     params.require(:bar).permit(:location)
