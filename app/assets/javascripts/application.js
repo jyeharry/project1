@@ -17,8 +17,7 @@
 //= require_tree .
 
 $(document).ready(function () {
-  const pathname = window.location.pathname;
-  switch (pathname) {
+  switch (window.location.pathname) {
     case '/bars':
       $('.nav-item').removeClass('active');
       $('#explore-link').addClass('active');
