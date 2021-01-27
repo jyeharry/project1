@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
-  resources :users, :only => [:new, :create, :index]
+  resources :users, :only => [:new, :create, :index, :show]
   resources :bars, :only => [:new, :create, :index]
 
   post '/users/save' => 'users#save'
