@@ -19,12 +19,12 @@
           <% if @current_user.bars.exists?(bar.id) %>
             <%= form_tag users_unsave_path do %>
               <%= hidden_field_tag :bar_id, bar.id %>
-              <%= submit_tag "Unsave", :id => 'custom-btn', :class => 'btn' %>
+              <%= submit_tag "Unsave", :id => 'custom-btn', :class => 'btn btn-block' %>
             <% end %>
           <% else %>
             <%= form_tag users_save_path do %>
               <%= hidden_field_tag :bar_id, bar.id %>
-              <%= submit_tag "Save", :id => 'custom-btn', :class => 'btn' %>
+              <%= submit_tag "Save", :id => 'custom-btn', :class => 'btn btn-block' %>
             <% end %>
           <% end %>
         </div>
