@@ -9,9 +9,16 @@
       <%= image_tag bar.image, :class => 'card-img-top' %>
       <div class="card-body">
         <h5 class="card-title"><%= bar.name %></h5>
-        <%= link_to bar.link, :class => 'card-link' %>
+        <%= link_to bar.link, bar.link, :class => 'card-link' if bar.link.present? %>
         <p class="card-text my-2"><%= bar.address %></p>
         <p class="card-text mb-2"><%= bar.phone %></p>
+
+      </div>
+      <div class="card-footer">
+        <%= form_tag users_save_path do %>
+          <%= hidden_field_tag :bar_id, bar.id %>
+          <%= submit_tag "Save", :id => 'custom-btn', :class => 'btn' %>
+        <% end %>
       </div>
     </div>
   </div>

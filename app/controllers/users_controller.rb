@@ -16,6 +16,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def save
+    bar = Bar.find params[:bar_id]
+    @current_user.bars << bar
+    redirect_back :fallback_location => 'post'
+  end
+
+  def unsave
+    # @current_user.bars.delete Bar.find(params[:bar_id])
+  end
+
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name)

@@ -1,7 +1,7 @@
 <h1>Sign in</h1>
 
-<%= form_tag login_path %>
-  <div class="form-group">
+<%= form_tag login_path do %>
+<div class="form-group">
     <%= label_tag :email %>
     <%= email_field_tag :email, nil, :class => 'form-control', :autofocus => true %>
   </div>
@@ -11,4 +11,5 @@
     <%= password_field_tag :password, nil, :class => 'form-control' %>
   </div>
 
-<%= submit_tag "Sign in", :id => 'custom-btn', :class => 'btn' %>
+  <%= submit_tag "Sign in", :id => 'custom-btn', :class => 'btn' %>
+<% end %>

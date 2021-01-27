@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :users, :only => [:new, :create, :index]
   resources :bars, :only => [:new, :create, :index]
 
+  post '/users/save' => 'users#save'
+
   get '/bars/saved' => 'bars#saved'
   post '/bars/search' => 'bars#search'
 

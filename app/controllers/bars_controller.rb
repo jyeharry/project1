@@ -1,6 +1,6 @@
 class BarsController < ApplicationController
   def index
-    @bars = Bar.all
+    @bars = Bar.order id: :desc
   end
 
   def search
@@ -12,13 +12,13 @@ class BarsController < ApplicationController
       bar.name = spot.name
       bar.address = spot.formatted_address
       bar.phone = spot.formatted_phone_number
-      photo = ''
       unless spot.photos.empty?
-        photo = spot.photos[0].fetch_url(400)
+        bar.photo = spot.photos[0].fetch_url(400)
       else
-        photo = "/assets/stock-photo.jpg"
+        bar.photo = "/assets/stock-photo.jpg"
       end
       bar.image = photo
+      bar.city = city
       bar.link = spot.website
       bar.bar_id = spot.place_id
       bar.save
@@ -27,7 +27,7 @@ class BarsController < ApplicationController
   end
 
   def saved
-    @bars = @current_user.bars
+    @bars = @current_user.bars.order :updated_at
   end
 
   private
