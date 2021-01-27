@@ -16,8 +16,8 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-const pathname = window.location.pathname;
 $(document).ready(function () {
+  const pathname = window.location.pathname;
   switch (pathname) {
     case '/bars':
       $('.nav-item').removeClass('active');
