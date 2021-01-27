@@ -23,7 +23,8 @@ class UsersController < ApplicationController
   end
 
   def unsave
-    # @current_user.bars.delete Bar.find(params[:bar_id])
+    @current_user.bars.delete Bar.find(params[:bar_id])
+    redirect_to bars_saved_path
   end
 
   private

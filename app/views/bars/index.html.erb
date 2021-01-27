@@ -14,12 +14,21 @@
         <p class="card-text mb-2"><%= bar.phone %></p>
 
       </div>
-      <div class="card-footer">
-        <%= form_tag users_save_path do %>
-          <%= hidden_field_tag :bar_id, bar.id %>
-          <%= submit_tag "Save", :id => 'custom-btn', :class => 'btn' %>
-        <% end %>
-      </div>
+      <% if @current_user.present? %>
+        <div class="card-footer">
+          <% if @current_user.bars.exists?(bar.id) %>
+            <%= form_tag users_unsave_path do %>
+              <%= hidden_field_tag :bar_id, bar.id %>
+              <%= submit_tag "Unsave", :id => 'custom-btn', :class => 'btn' %>
+            <% end %>
+          <% else %>
+            <%= form_tag users_save_path do %>
+              <%= hidden_field_tag :bar_id, bar.id %>
+              <%= submit_tag "Save", :id => 'custom-btn', :class => 'btn' %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
   <% if i % 3 == 2 %>

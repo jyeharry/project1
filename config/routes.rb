@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :bars, :only => [:new, :create, :index]
 
   post '/users/save' => 'users#save'
+  post '/users/unsave' => 'users#unsave'
 
   get '/bars/saved' => 'bars#saved'
   post '/bars/search' => 'bars#search'

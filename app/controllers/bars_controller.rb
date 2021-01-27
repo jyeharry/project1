@@ -5,7 +5,7 @@ class BarsController < ApplicationController
 
   def search
     coords = Geocoder.search(params[:location]).first.coordinates
-    client = GooglePlaces::Client.new('')
+    client = GooglePlaces::Client.new(ENV["GOOGLE_PLACES_API_KEY"])
     spots = client.spots(coords[0], coords[1], :types => ['bar', 'night_club'], :detail => true);
     spots.each do |spot|
       bar = Bar.new
@@ -13,12 +13,11 @@ class BarsController < ApplicationController
       bar.address = spot.formatted_address
       bar.phone = spot.formatted_phone_number
       unless spot.photos.empty?
-        bar.photo = spot.photos[0].fetch_url(400)
+        bar.image = spot.photos[0].fetch_url(400)
       else
-        bar.photo = "/assets/stock-photo.jpg"
+        bar.image = "/assets/stock-photo.jpg"
       end
-      bar.image = photo
-      bar.city = city
+      bar.city = spot.city
       bar.link = spot.website
       bar.bar_id = spot.place_id
       bar.save

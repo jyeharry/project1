@@ -15,7 +15,7 @@
 
       </div>
       <div class="card-footer">
-        <%= form_tag users_save_path do %>
+        <%= form_tag users_unsave_path do %>
           <%= hidden_field_tag :bar_id, bar.id %>
           <%= submit_tag "Unsave", :id => 'custom-btn', :class => 'btn' %>
         <% end %>
