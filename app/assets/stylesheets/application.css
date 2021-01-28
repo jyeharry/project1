@@ -57,3 +57,7 @@ body {
 .card-width {
   width: 400px;
 }
+
+.error {
+  color: red;
+}

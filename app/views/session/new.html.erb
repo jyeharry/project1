@@ -1,7 +1,7 @@
 <h1 class='mb-4'>Sign in</h1>
 
 <%= form_tag login_path do %>
-<div class="form-group">
+  <div class="form-group">
     <%= label_tag :email %>
     <%= email_field_tag :email, nil, :class => 'form-control', :required => true, :autofocus => true %>
   </div>
@@ -10,6 +10,12 @@
     <%= label_tag :password %>
     <%= password_field_tag :password, nil, :class => 'form-control', :required => true %>
   </div>
+
+  <% if flash[:error].present? %>
+    <p class="error">
+      <%= flash[:error] %>
+    </p>
+  <% end %>
 
   <%= submit_tag "Sign in", :id => 'custom-btn', :class => 'btn' %>
 <% end %>
