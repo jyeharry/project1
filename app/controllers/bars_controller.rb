@@ -15,7 +15,7 @@ class BarsController < ApplicationController
       unless spot.photos.empty?
         bar.image = spot.photos[0].fetch_url(400)
       else
-        bar.image = "/assets/stock-photo.jpg"
+        bar.image = Pathname "/assets/stock-photo.jpg"
       end
       bar.city = spot.city
       bar.link = spot.website

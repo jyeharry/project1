@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    check_wrong_user
     @user = User.find params[:id]
   end
 
@@ -47,5 +48,9 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name)
+  end
+
+  def check_wrong_user
+    redirect_to root_path unless @current_user.id == params[:id]
   end
 end

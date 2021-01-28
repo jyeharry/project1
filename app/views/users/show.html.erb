@@ -1,6 +1,6 @@
 <h1><%= "#{@user.first_name}'s bars" %></h1>
 
-<%= link_to 'Edit profile', edit_user_path %>
+<%= link_to 'Edit profile', edit_user_path if @current_user.id == @user.id %>
 
 <% @user.bars.each_with_index do |bar, i| %>
   <% if i % 3 == 0 %>
