@@ -24,23 +24,28 @@
             <li class="nav-item">
               <%= link_to 'Explore Bars', bars_path, :id => 'explore-link', :class => 'nav-link' %>
             </li>
+
             <% if @current_user.present? %>
+
               <li class="nav-item">
-                <%= link_to 'Saved bars', user_path(@current_user.id), :id => 'saved-bars-link', :class => 'nav-link' %>
+                <%= link_to 'My profile', user_path(@current_user.id), :id => 'saved-bars-link', :class => 'nav-link' %>
               </li>
               <li class="nav-item">
-                <%= link_to 'All users', users_path, :class => 'nav-link' %>
+                <%= link_to 'All users', users_path, :id => 'users-link', :class => 'nav-link' %>
               </li>
               <li class="nav-item">
                 <%= link_to 'Log out', login_path, :class => 'nav-link', :method => 'delete' %>
               </li>
+
             <% else %>
+
               <li class="nav-item">
                 <%= link_to 'Sign up', new_user_path, :id => 'sign-up-link', :class => 'nav-link' %>
               </li>
               <li class="nav-item">
                 <%= link_to 'Sign in', login_path, :id => 'sign-in-link', :class => 'nav-link' %>
               </li>
+
             <% end %>
 
           </ul>
@@ -54,5 +59,48 @@
     <div class="container">
       <%= yield %>
     </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        // this switch statement figures out which page the user is on and highlights it in the navbar
+        switch (window.location.pathname) {
+          case '<%= bars_path %>':
+            $('.nav-item').removeClass('active');
+            $('#explore-link').addClass('active');
+            break;
+          case '<%= users_path %>':
+            $('.nav-item').removeClass('active');
+            $('#users-link').addClass('active');
+            break;
+          case '<%= new_user_path %>':
+            $('.nav-item').removeClass('active');
+            $('#sign-up-link').addClass('active');
+            break;
+          case '<%= login_path %>':
+            $('.nav-item').removeClass('active');
+            $('#sign-in-link').addClass('active');
+            break;
+          case '<%= user_path(@current_user.id) if @current_user.present? %>':
+            $('.nav-item').removeClass('active');
+            $('#saved-bars-link').addClass('active');
+            break;
+          case '<%= user_path(@current_user.id) if @current_user.present? %>/edit':
+            $('.nav-item').removeClass('active');
+            $('#saved-bars-link').addClass('active');
+            break;
+        }
+
+        // if there errors when signing up, highlight the input boxes with the errors red
+        <% if @user && @user.errors.any? %>
+          <% @user.errors.size.times do |i| %>
+            $('#<%= @user.errors.keys[i].slice(0..-1) %>').css('background-color', '#ffa0a0'); // slice is used to remove the colon at the beginning
+          <% end %>
+        <% end %>
+
+        // after the input boxes have been highlighted red, turn them white again clicking away from the input box
+        $('form input').on('blur', function() {
+          $(this).css('background-color', 'white');
+        })
+      })
+    </script>
   </body>
 </html>

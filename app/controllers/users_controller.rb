@@ -7,21 +7,24 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @button = "Sign up"
   end
 
   def show
     @user = User.find params[:id]
+    @bars = @user.bars.order updated_at: :desc
   end
 
   def edit
-    check_wrong_user
+    redirect_to root_path if is_wrong_user?
     @user = User.find params[:id]
+    @button = "Save changes"
   end
 
   def update
     user = User.find params[:id]
     user.update user_params
-    redirect_to root_path
+    redirect_to user_path user.id
   end
 
   def create
@@ -36,6 +39,7 @@ class UsersController < ApplicationController
 
   def save
     bar = Bar.find params[:bar_id]
+    bar.touch # updates the "updated_at" column so most recently saved entry appears last
     @current_user.bars << bar
     redirect_back :fallback_location => 'post'
   end
@@ -45,12 +49,17 @@ class UsersController < ApplicationController
     redirect_back :fallback_location => 'post'
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to root_path
+  end
+
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name)
   end
 
-  def check_wrong_user
-    redirect_to root_path unless @current_user.id == params[:id]
+  def is_wrong_user?
+    @current_user.id != params[:id].to_i
   end
 end

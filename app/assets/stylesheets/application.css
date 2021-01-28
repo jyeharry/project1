@@ -44,14 +44,14 @@ body {
   background-color: #D874F2;
 }
 
-.custom-btn {
-  color: #D874F2;
-  border-color: #D874F2;
+#custom-delete-btn {
+  color: red;
+  border-color: red;
 }
 
-.custom-btn:hover {
+#custom-delete-btn:hover {
   color: #fff;
-  background-color: #D874F2;
+  background-color: red;
 }
 
 .card-width {

@@ -15,24 +15,3 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
-
-$(document).ready(function () {
-  switch (window.location.pathname) {
-    case '/bars':
-      $('.nav-item').removeClass('active');
-      $('#explore-link').addClass('active');
-      break;
-    case '/users/new':
-      $('.nav-item').removeClass('active');
-      $('#sign-up-link').addClass('active');
-      break;
-    case '/sessions/new':
-      $('.nav-item').removeClass('active');
-      $('#sign-in-link').addClass('active');
-      break;
-    case '/bars/saved':
-      $('.nav-item').removeClass('active');
-      $('#saved-bars-link').addClass('active');
-      break;
-  }
-})

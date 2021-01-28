@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
   resources :users
-  resources :bars, :only => [:new, :create, :index]
+  resources :bars, :only => [:index]
 
   post '/users/save' => 'users#save'
   post '/users/unsave' => 'users#unsave'
-  
+
   post '/bars/search' => 'bars#search'
 
   get '/login' => 'session#new'
