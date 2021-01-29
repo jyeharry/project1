@@ -1,37 +1,43 @@
 <h1 class='mb-4'>Explore Bars</h1>
 
-<% @bars.each_with_index do |bar, i| %>
-  <% if i % 3 == 0 %>  <%# start a new row every three cards, starting at 0 %>
-    <div class="row row-cols-1 row-cols-lg-3">
-  <% end %>
-  <div class="col mb-4">
-    <div class="card h-100">
-      <%= image_tag bar.image, :class => 'card-img-top' %>
-      <div class="card-body">
-        <h5 class="card-title"><%= bar.name %></h5>
-        <%= link_to bar.link, bar.link, :class => 'card-link' if bar.link.present? %>
-        <p class="card-text my-2"><%= bar.address %></p>
-        <p class="card-text mb-2"><%= bar.phone %></p>
-      </div>
-
-      <% if @current_user.present? %>
-        <div class="card-footer">
-          <% if @current_user.bars.exists?(bar.id) %>
-            <%= form_tag users_unsave_path do %>
-              <%= hidden_field_tag :bar_id, bar.id %>
-              <%= submit_tag "Unsave", :id => 'custom-btn', :class => 'btn btn-block' %>
-            <% end %>
-          <% else %>
-            <%= form_tag users_save_path do %>
-              <%= hidden_field_tag :bar_id, bar.id %>
-              <%= submit_tag "Save", :id => 'custom-btn', :class => 'btn btn-block' %>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <% if i % 3 == 2 %> <%# end the row every three cards, starting at 2 %>
-    </div>
-  <% end %>
+<% if !flash[:error_invalid_search].nil? %>
+  <p class="mb-2">
+    <%= flash[:error_invalid_search] %>
+  </p>
 <% end %>
+
+  <% @bars.each_with_index do |bar, i| %>
+    <% if i % 3 == 0 %>  <%# start a new row every three cards, starting at 0 %>
+      <div class="row row-cols-1 row-cols-lg-3">
+    <% end %>
+    <div class="col mb-4">
+      <div class="card h-100">
+        <%= image_tag bar.image, :class => 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title"><%= bar.name %></h5>
+          <%= link_to bar.link, bar.link, :class => 'card-link' if bar.link.present? %>
+          <p class="card-text my-2"><%= bar.address %></p>
+          <p class="card-text mb-2"><%= bar.phone %></p>
+        </div>
+
+        <% if @current_user.present? %>
+          <div class="card-footer">
+            <% if @current_user.bars.exists?(bar.id) %>
+              <%= form_tag users_unsave_path do %>
+                <%= hidden_field_tag :bar_id, bar.id %>
+                <%= submit_tag "Unsave", :id => 'custom-btn', :class => 'btn btn-block' %>
+              <% end %>
+            <% else %>
+              <%= form_tag users_save_path do %>
+                <%= hidden_field_tag :bar_id, bar.id %>
+                <%= submit_tag "Save", :id => 'custom-btn', :class => 'btn btn-block' %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% if i % 3 == 2 %> <%# end the row every three cards, starting at 2 %>
+      </div>
+    <% end %>
+  <% end %>
