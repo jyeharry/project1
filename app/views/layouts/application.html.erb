@@ -89,14 +89,14 @@
             break;
         }
 
-        // if there errors when signing up, highlight the input boxes with the errors red
+        // if there are errors when signing up, highlight the input boxes with the errors red
         <% if @user && @user.errors.any? %>
           <% @user.errors.size.times do |i| %>
             $('#<%= @user.errors.keys[i].slice(0..-1) %>').css('background-color', '#ffa0a0'); // slice is used to remove the colon at the beginning
           <% end %>
         <% end %>
 
-        // after the input boxes have been highlighted red, turn them white again clicking away from the input box
+        // after the input boxes have been highlighted red, turn them white again after clicking away from the input box
         $('form input').on('blur', function() {
           $(this).css('background-color', 'white');
         })

@@ -4,11 +4,11 @@ class SessionController < ApplicationController
 
   def create
     user = User.find_by :email => params[:email]
-    if user.present? && user.authenticate(params[:password])
+    if user.present? && user.authenticate(params[:password]) # if sign in details are correct, then go to homepage
       session[:user_id] = user.id
       redirect_to root_path
-    else
-      flash[:error] = "Invalid email or password"
+    else # if incorrect refresh page and display error
+      flash[:error_invalid_email_password] = "Invalid email or password"
       redirect_to login_path
     end
   end

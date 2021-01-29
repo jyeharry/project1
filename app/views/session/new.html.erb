@@ -11,11 +11,9 @@
     <%= password_field_tag :password, nil, :class => 'form-control', :required => true %>
   </div>
 
-  <% if flash[:error].present? %>
-    <p class="error">
-      <%= flash[:error] %>
-    </p>
-  <% end %>
+  <p class="error">
+    <%= flash[:error_invalid_email_password] %>
+  </p>
 
   <%= submit_tag "Sign in", :id => 'custom-btn', :class => 'btn' %>
 <% end %>

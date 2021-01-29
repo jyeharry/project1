@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @button = "Sign up"
+    @button = "Sign up" # to replace the button text in the form
+    flash[:error_taken_email] = '' # clear any recent errors
   end
 
   def show
@@ -18,21 +19,26 @@ class UsersController < ApplicationController
   def edit
     redirect_to root_path if is_wrong_user?
     @user = User.find params[:id]
-    @button = "Save changes"
+    @button = "Save changes" # to replace the button text in the form
   end
 
   def update
     user = User.find params[:id]
-    user.update user_params
-    redirect_to user_path user.id
+    if user.update user_params # if successful, go to user profile
+      redirect_to user_path user.id
+    else # if unsuccessful then either the email was taken or passwords did not match
+      flash[:error_taken_email] = 'Email is taken or passwords did not match'
+      redirect_to edit_user_path(params[:id])
+    end
   end
 
   def create
     @user = User.new user_params
-    if @user.save
+    if @user.save # if successful, go to homepage
       session[:user_id] = @user.id
       redirect_to root_path
-    else
+    else # if unsuccessful then either the email was taken or passwords did not match
+      flash[:error_taken_email] = 'Email is taken or passwords did not match'
       render :new
     end
   end
