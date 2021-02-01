@@ -2,6 +2,8 @@
 
 ## BarHop
 
+See a demo [here](https://agile-wave-60653.herokuapp.com/).
+
 The task for this project was to create a CRUD app using Ruby on Rails.
 
 BarHop is used to search for bars and night clubs around a particular area, displaying them in a card like format and allowing users to save them to their profile. The cards display only core information, such as club name, address, website, a photo and phone number. This allows the user to quickly look through the bars in a certain area to help them make up their mind for their next night out, avoiding any extra fluff you would get with a search engine query.
